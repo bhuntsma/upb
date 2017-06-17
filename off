@@ -1,0 +1,16 @@
+#!/usr/bin/python
+#import tty
+from subprocess import call
+
+tty = '/dev/ttyUSB0'
+
+#stty -F /dev/ttyUSB0 4800
+call(["stty", "-F", tty, "4800"])
+
+#f = open('/dev/ttyUSB0','wb')
+f = open(tty,'wb')
+#tty.setraw(f.fileno())
+#f.write('\0240700A301FF2036')
+f.write("\1\0\0\0\0\0\0\0")
+f.write("\0240700A301FF2135\r")
+f.close()
